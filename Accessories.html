@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessories - Bloom & Grow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .product-card {
+        transition: all 0.3s ease;
+      }
+      .favorite-btn.active {
+        color: #ef4444;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      .nav-link::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: #10b981;
+        transition: width 0.3s;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+      .category-btn.active {
+        background-color: #10b981;
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
+          <h1 class="text-xl font-bold text-gray-800">Bloom & Grow</h1>
+        </div>
+
+        <nav class="hidden md:flex space-x-8">
+          <a
+            href="index.html"
+            class="nav-link text-gray-700 hover:text-emerald-500"
+            >Home</a
+          >
+          <a
+            href="Accessories.html"
+            class="nav-link text-gray-700 hover:text-emerald-500"
+            >Accessories</a
+          >
+          <a
+            href="about.html"
+            class="nav-link text-gray-700 hover:text-emerald-500"
+            >About</a
+          >
+        </nav>
+
+        <div class="flex items-center space-x-4">
+          <button
+            id="user-btn"
+            class="p-2 text-gray-600 hover:text-emerald-500 relative"
+          >
+            <i class="fas fa-user text-xl"></i>
+          </button>
+          <button
+            id="favorites-btn"
+            class="p-2 text-gray-600 hover:text-emerald-500 relative"
+          >
+            <i class="fas fa-heart text-xl"></i>
+            <span
+              id="fav-count"
+              class="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden"
+              >0</span
+            >
+          </button>
+          <button
+            id="cart-btn"
+            class="p-2 text-gray-600 hover:text-emerald-500 relative"
+          >
+            <i class="fas fa-shopping-cart text-xl"></i>
+            <span
+              id="cart-count"
+              class="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden"
+              >0</span
+            >
+          </button>
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t py-2 px-4"
+      >
+        <a href="#" class="block py-2 text-gray-700 hover:text-emerald-500"
+          >Home</a
+        >
+        <a href="#" class="block py-2 text-gray-700 hover:text-emerald-500"
+          >Accessories</a
+        >
+        <a href="#" class="block py-2 text-gray-700 hover:text-emerald-500"
+          >About</a
+        >
+      </div>
+    </header>
+
+    <section class="bg-emerald-50 py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4 text-center">
+          Plant Accessories
+        </h2>
+        <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto">
+          Discover our collection of premium plant accessories to help your
+          green friends thrive and beautify your space.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-12 container mx-auto px-4">
+      <div class="flex justify-between items-center mb-8 flex-wrap">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">
+          Our Accessories
+        </h2>
+        <div class="flex space-x-2 flex-wrap">
+          <button
+            class="category-btn px-3 py-1 bg-emerald-500 text-white rounded-full text-sm mb-2 active"
+            data-category="all"
+          >
+            All
+          </button>
+          <button
+            class="category-btn px-3 py-1 bg-white text-gray-600 rounded-full text-sm mb-2"
+            data-category="pots"
+          >
+            Pots & Planters
+          </button>
+          <button
+            class="category-btn px-3 py-1 bg-white text-gray-600 rounded-full text-sm mb-2"
+            data-category="tools"
+          >
+            Tools
+          </button>
+          <button
+            class="category-btn px-3 py-1 bg-white text-gray-600 rounded-full text-sm mb-2"
+            data-category="decor"
+          >
+            Decor
+          </button>
+          <button
+            class="category-btn px-3 py-1 bg-white text-gray-600 rounded-full text-sm mb-2"
+            data-category="care"
+          >
+            Plant Care
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        id="products-container"
+      ></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-12 bg-emerald-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+          Why Choose Our Accessories?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            <div
+              class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-award text-emerald-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">
+              Premium Quality
+            </h3>
+            <p class="text-gray-600">
+              All our accessories are made from high-quality materials that are
+              built to last.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            <div
+              class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-seedling text-emerald-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">
+              Plant-Friendly
+            </h3>
+            <p class="text-gray-600">
+              Designed with your plants' health in mind, ensuring proper
+              drainage and growth.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            <div
+              class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-truck text-emerald-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">
+              Fast Shipping
+            </h3>
+            <p class="text-gray-600">
+              We ship most orders within 24 hours, so you get your accessories
+              quickly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Bloom & Grow</h4>
+            <p class="text-gray-400">
+              Bringing nature's beauty to your doorstep since 2015.
+            </p>
+            <div class="flex space-x-4 mt-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-pinterest-p"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Shop</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >All Plants</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Indoor Plants</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Outdoor Plants</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Flowers</a>
+              </li>
+              <li>
+                <a
+                  href="accessories.html"
+                  class="text-gray-400 hover:text-white"
+                  >Accessories</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Help</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">FAQs</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Shipping</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Returns</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Care Guides</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+            <p class="text-gray-400 mb-4">
+              Subscribe to get updates on new arrivals and special offers.
+            </p>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Your email"
+                class="px-4 py-2 rounded-l w-full text-gray-800"
+              />
+              <button
+                class="bg-emerald-500 hover:bg-emerald-600 px-4 rounded-r"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-sm"
+        >
+          <p>© 2023 Bloom & Grow. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modals -->
+    <div
+      id="user-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md p-6 fade-in"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+            My Profile
+          </h3>
+          <button
+            id="close-user-modal"
+            class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="text-center py-10 text-gray-500">
+          <i class="fas fa-user text-4xl mb-3 text-gray-300"></i>
+          <p>Please sign in to view your profile</p>
+          <button
+            class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded mt-4"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="favorites-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+    >
+      <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 fade-in">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-800">My Favorites</h3>
+          <button
+            id="close-favorites-modal"
+            class="text-gray-500 hover:text-gray-700"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="favorites-list" class="space-y-4 max-h-96 overflow-y-auto">
+          <div
+            class="text-center py-10 text-gray-500"
+            id="empty-favorites-message"
+          >
+            <i class="fas fa-heart text-4xl mb-3 text-gray-300"></i>
+            <p>Your favorites list is empty</p>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t flex justify-end">
+          <button
+            class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded"
+          >
+            View All
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="cart-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+    >
+      <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 fade-in">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-800">My Cart</h3>
+          <button
+            id="close-cart-modal"
+            class="text-gray-500 hover:text-gray-700"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="cart-items" class="space-y-4 max-h-96 overflow-y-auto">
+          <div class="text-center py-10 text-gray-500" id="empty-cart-message">
+            <i class="fas fa-shopping-cart text-4xl mb-3 text-gray-300"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t">
+          <div class="flex justify-between mb-4">
+            <span class="font-medium">Subtotal</span>
+            <span id="cart-subtotal" class="font-bold">$0.00</span>
+          </div>
+          <button
+            class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-4 rounded"
+          >
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Accessories data
+      const accessories = [
+        {
+          id: 101,
+          name: "Ceramic Plant Pot",
+          price: 24.99,
+          image: "Picture/Accessories/picture (1).jpg",
+          category: "pots",
+          description: "Beautiful handcrafted ceramic pot with drainage hole.",
+          rating: 4.7,
+        },
+        {
+          id: 102,
+          name: "Watering Can",
+          price: 18.99,
+          image: "Picture/Accessories/picture (2).jpg",
+          category: "tools",
+          description:
+            "1.5L metal watering can with long spout for precise watering.",
+          rating: 4.5,
+        },
+        {
+          id: 103,
+          name: "Plant Stand",
+          price: 45.99,
+          image: "Picture/Accessories/picture (3).jpg",
+          category: "decor",
+          description:
+            "Mid-century modern plant stand for displaying your favorite plants.",
+          rating: 4.8,
+        },
+        {
+          id: 104,
+          name: "Pruning Shears",
+          price: 15.99,
+          image: "Picture/Accessories/picture (4).jpg",
+          category: "tools",
+          description:
+            "Sharp stainless steel pruning shears for plant maintenance.",
+          rating: 4.6,
+        },
+        {
+          id: 105,
+          name: "Plant Fertilizer",
+          price: 12.99,
+          image: "Picture/Accessories/picture (5).jpg",
+          category: "care",
+          description: "Organic plant food suitable for all indoor plants.",
+          rating: 4.4,
+        },
+        {
+          id: 106,
+          name: "Hanging Macrame",
+          price: 28.99,
+          image: "Picture/Accessories/picture (6).jpg",
+          category: "decor",
+          description:
+            "Handmade macrame plant hanger for bohemian style homes.",
+          rating: 4.9,
+        },
+        {
+          id: 107,
+          name: "Soil Moisture Meter",
+          price: 9.99,
+          image: "Picture/Accessories/picture (7).jpg",
+          category: "tools",
+          description:
+            "Digital meter to accurately measure soil moisture levels.",
+          rating: 4.3,
+        },
+        {
+          id: 108,
+          name: "Terrarium Kit",
+          price: 34.99,
+          image: "Picture/Accessories/picture (8).jpg",
+          category: "decor",
+          description:
+            "Complete kit to create your own beautiful glass terrarium.",
+          rating: 4.7,
+        },
+      ];
+
+      let cart = [];
+      let favorites = [];
+      let currentCategory = "all";
+
+      const productsContainer = document.getElementById("products-container");
+      const categoryButtons = document.querySelectorAll(".category-btn");
+      const cartModal = document.getElementById("cart-modal");
+      const favoritesModal = document.getElementById("favorites-modal");
+      const userModal = document.getElementById("user-modal");
+      const cartCount = document.getElementById("cart-count");
+      const favCount = document.getElementById("fav-count");
+      const closeCartModal = document.getElementById("close-cart-modal");
+      const closeFavoritesModal = document.getElementById(
+        "close-favorites-modal"
+      );
+      const closeUserModal = document.getElementById("close-user-modal");
+
+      document
+        .getElementById("mobile-menu-btn")
+        .addEventListener("click", toggleMobileMenu);
+      document
+        .getElementById("cart-btn")
+        .addEventListener("click", () => toggleModal(cartModal));
+      document.getElementById("favorites-btn").addEventListener("click", () => {
+        toggleModal(favoritesModal);
+        renderFavorites();
+      });
+      document
+        .getElementById("user-btn")
+        .addEventListener("click", () => toggleModal(userModal));
+
+      closeCartModal.addEventListener("click", () => toggleModal(cartModal));
+      closeFavoritesModal.addEventListener("click", () =>
+        toggleModal(favoritesModal)
+      );
+      closeUserModal.addEventListener("click", () => toggleModal(userModal));
+
+      categoryButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          categoryButtons.forEach((btn) => {
+            btn.classList.remove("active", "bg-emerald-500", "text-white");
+            btn.classList.add("bg-white", "text-gray-600");
+          });
+
+          button.classList.add("active", "bg-emerald-500", "text-white");
+          button.classList.remove("bg-white", "text-gray-600");
+
+          currentCategory = button.dataset.category;
+          renderProducts();
+        });
+      });
+
+      function init() {
+        renderProducts();
+        updateCartCount();
+        updateFavoritesCount();
+      }
+
+      function renderProducts() {
+        productsContainer.innerHTML = "";
+
+        const filteredProducts =
+          currentCategory === "all"
+            ? accessories
+            : accessories.filter(
+                (product) => product.category === currentCategory
+              );
+
+        if (filteredProducts.length === 0) {
+          productsContainer.innerHTML = `
+            <div class="col-span-full text-center py-12">
+              <i class="fas fa-search text-4xl text-gray-300 mb-3"></i>
+              <p class="text-gray-500">No products found in this category</p>
+            </div>
+          `;
+          return;
+        }
+
+        filteredProducts.forEach((product) => {
+          const isFavorite = favorites.some((fav) => fav.id === product.id);
+
+          const productCard = document.createElement("div");
+          productCard.className =
+            "product-card bg-white rounded-lg shadow-md overflow-hidden";
+          productCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.image}" alt="${
+            product.name
+          }" class="w-full h-48 object-cover">
+                        <button class="favorite-btn absolute top-2 right-2 p-2 rounded-full bg-white shadow ${
+                          isFavorite ? "active" : ""
+                        }" 
+                                data-id="${product.id}">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-semibold text-gray-800">${
+                              product.name
+                            }</h3>
+                            <span class="font-bold text-emerald-600">$${product.price.toFixed(
+                              2
+                            )}</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">${
+                          product.description
+                        }</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                ${renderRating(product.rating)}
+                                <span class="text-gray-500 text-sm ml-1">${
+                                  product.rating
+                                }</span>
+                            </div>
+                            <button class="add-to-cart bg-emerald-500 hover:bg-emerald-600 text-white text-sm py-1 px-3 rounded-full" 
+                                    data-id="${product.id}">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+          productsContainer.appendChild(productCard);
+        });
+
+        document.querySelectorAll(".favorite-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const productId = parseInt(btn.dataset.id);
+            toggleFavorite(productId);
+          });
+        });
+
+        document.querySelectorAll(".add-to-cart").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const productId = parseInt(btn.dataset.id);
+            addToCart(productId);
+          });
+        });
+      }
+
+      function renderRating(rating) {
+        let stars = "";
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+
+        for (let i = 0; i < fullStars; i++) {
+          stars += '<i class="fas fa-star text-yellow-400 text-xs"></i>';
+        }
+
+        if (hasHalfStar) {
+          stars +=
+            '<i class="fas fa-star-half-alt text-yellow-400 text-xs"></i>';
+        }
+
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        for (let i = 0; i < emptyStars; i++) {
+          stars += '<i class="far fa-star text-yellow-400 text-xs"></i>';
+        }
+
+        return stars;
+      }
+
+      function toggleFavorite(productId) {
+        const product = accessories.find((p) => p.id === productId);
+        const favoriteIndex = favorites.findIndex(
+          (fav) => fav.id === productId
+        );
+
+        if (favoriteIndex === -1) {
+          favorites.push(product);
+        } else {
+          favorites.splice(favoriteIndex, 1);
+        }
+
+        updateFavoritesCount();
+        renderProducts();
+
+        if (!favoritesModal.classList.contains("hidden")) {
+          renderFavorites();
+        }
+      }
+
+      function addToCart(productId) {
+        const product = accessories.find((p) => p.id === productId);
+        const existingItem = cart.find((item) => item.id === productId);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            ...product,
+            quantity: 1,
+          });
+        }
+
+        updateCartCount();
+
+        if (!cartModal.classList.contains("hidden")) {
+          renderCart();
+        }
+
+        const notification = document.createElement("div");
+        notification.className =
+          "fixed bottom-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce";
+        notification.textContent = `${product.name} added to cart!`;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.remove();
+        }, 2000);
+      }
+
+      function updateCartCount() {
+        const totalItems = cart.reduce(
+          (total, item) => total + item.quantity,
+          0
+        );
+
+        if (totalItems > 0) {
+          cartCount.textContent = totalItems;
+          cartCount.classList.remove("hidden");
+        } else {
+          cartCount.classList.add("hidden");
+        }
+      }
+
+      function updateFavoritesCount() {
+        if (favorites.length > 0) {
+          favCount.textContent = favorites.length;
+          favCount.classList.remove("hidden");
+        } else {
+          favCount.classList.add("hidden");
+        }
+      }
+
+      function renderCart() {
+        const cartItems = document.getElementById("cart-items");
+        const emptyCartMessage = document.getElementById("empty-cart-message");
+        const cartSubtotal = document.getElementById("cart-subtotal");
+
+        cartItems.innerHTML = "";
+
+        if (cart.length === 0) {
+          emptyCartMessage.classList.remove("hidden");
+          cartSubtotal.textContent = "$0.00";
+          return;
+        }
+
+        emptyCartMessage.classList.add("hidden");
+
+        let subtotal = 0;
+
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+
+          const cartItem = document.createElement("div");
+          cartItem.className = "flex items-center border-b pb-4";
+          cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${
+            item.name
+          }" class="w-16 h-16 object-cover rounded">
+                    <div class="ml-4 flex-1">
+                        <h4 class="font-medium text-gray-800">${item.name}</h4>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-gray-500">$${item.price.toFixed(
+                              2
+                            )}</span>
+                            <div class="flex items-center">
+                                <button class="quantity-btn px-2 py-1 bg-gray-100 rounded" data-id="${
+                                  item.id
+                                }" data-action="decrease">-</button>
+                                <span class="mx-2">${item.quantity}</span>
+                                <button class="quantity-btn px-2 py-1 bg-gray-100 rounded" data-id="${
+                                  item.id
+                                }" data-action="increase">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="remove-btn ml-4 text-gray-400 hover:text-red-500" data-id="${
+                      item.id
+                    }">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+          cartItems.appendChild(cartItem);
+        });
+
+        document.querySelectorAll(".quantity-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const productId = parseInt(btn.dataset.id);
+            const action = btn.dataset.action;
+            updateCartItemQuantity(productId, action);
+          });
+        });
+
+        document.querySelectorAll(".remove-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const productId = parseInt(btn.dataset.id);
+            removeFromCart(productId);
+          });
+        });
+
+        cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+      }
+
+      function renderFavorites() {
+        const favoritesList = document.getElementById("favorites-list");
+        const emptyFavoritesMessage = document.getElementById(
+          "empty-favorites-message"
+        );
+
+        favoritesList.innerHTML = "";
+
+        if (favorites.length === 0) {
+          emptyFavoritesMessage.classList.remove("hidden");
+          return;
+        }
+
+        emptyFavoritesMessage.classList.add("hidden");
+
+        favorites.forEach((item) => {
+          const favoriteItem = document.createElement("div");
+          favoriteItem.className = "flex items-center border-b pb-4";
+          favoriteItem.innerHTML = `
+                    <img src="${item.image}" alt="${
+            item.name
+          }" class="w-16 h-16 object-cover rounded">
+                    <div class="ml-4 flex-1">
+                        <h4 class="font-medium text-gray-800">${item.name}</h4>
+                        <span class="text-emerald-600 font-medium">$${item.price.toFixed(
+                          2
+                        )}</span>
+                    </div>
+                    <button class="remove-favorite ml-4 text-gray-400 hover:text-red-500" data-id="${
+                      item.id
+                    }">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+          favoritesList.appendChild(favoriteItem);
+        });
+
+        document.querySelectorAll(".remove-favorite").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const productId = parseInt(btn.dataset.id);
+            toggleFavorite(productId);
+          });
+        });
+      }
+
+      function updateCartItemQuantity(productId, action) {
+        const item = cart.find((item) => item.id === productId);
+
+        if (action === "increase") {
+          item.quantity += 1;
+        } else if (action === "decrease" && item.quantity > 1) {
+          item.quantity -= 1;
+        }
+
+        updateCartCount();
+        renderCart();
+      }
+
+      function removeFromCart(productId) {
+        cart = cart.filter((item) => item.id !== productId);
+        updateCartCount();
+        renderCart();
+      }
+
+      function toggleModal(modal) {
+        if (modal.classList.contains("hidden")) {
+          modal.classList.remove("hidden");
+          if (modal === cartModal) {
+            renderCart();
+          }
+        } else {
+          modal.classList.add("hidden");
+        }
+      }
+
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+
+      window.addEventListener("click", (e) => {
+        if (e.target === userModal) toggleModal(userModal);
+        if (e.target === cartModal) toggleModal(cartModal);
+        if (e.target === favoritesModal) toggleModal(favoritesModal);
+      });
+
+      init();
+    </script>
+  </body>
+</html>
